@@ -1,0 +1,14 @@
+[Unit]
+Description=Unifi Controller Database
+After=local-fs.target
+
+[Container]
+Image=docker.io/library/mongo:7.0.16
+EnvironmentFile=unifi-db.env
+Volume=unifi-db-data.volume:/data/db
+Volume=./init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh:ro
+Network=unifi.network
+NetworkAlias=unifi-db
+
+[Install]
+WantedBy=multi-user.target default.target

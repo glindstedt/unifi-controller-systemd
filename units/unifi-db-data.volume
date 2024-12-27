@@ -1,0 +1,5 @@
+[Unit]
+Description=Data Volume for Unifi Controller Database
+After=local-fs.target
+
+[Volume]

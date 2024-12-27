@@ -1,0 +1,17 @@
+[Unit]
+Description=Unifi Controller Application
+Requires=unifi-db.service
+After=unifi-db.service
+
+[Container]
+Image=lscr.io/linuxserver/unifi-network-application:8.6.9-ls73
+EnvironmentFile=unifi-network-application.env
+Volume=unifi-network-application-config.volume:/config
+Network=unifi.network
+PublishPort=8443:8443
+PublishPort=8080:8080
+PublishPort=3478:3478/udp
+PublishPort=10001:10001/udp
+
+[Install]
+WantedBy=multi-user.target default.target
